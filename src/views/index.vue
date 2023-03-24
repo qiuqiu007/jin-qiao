@@ -282,49 +282,76 @@ export default {
     }
   },
   mounted() {
-    getStoreView().then(res =>{
-      if(res.success){
-        let data = res.data||[]
-        this.stockData = data[0]||{}
+    this.initFun()
+    let _this = this
+    _this.seconds = 0
+    this.timer = setInterval(()=>{
+      let time = new Date();
+      let month = time.getMonth() + 1
+      month = month<10 ? '0'+month : month
+      let data = time.getDate()
+      data = data<10 ? '0'+data : data
+      let hours = time.getHours()
+      hours = hours<10 ? '0'+hours : hours
+      let minutes = time.getMinutes()
+      minutes = minutes<10 ? '0'+minutes : minutes
+      let seconds = time.getSeconds()
+      seconds = seconds<10 ? '0'+seconds : seconds
+      _this.dataTime = (time.getFullYear()+'-'+month+'-'+data+' '+hours+':'+minutes+':'+seconds)
+      // 十分钟刷新一次数据
+      if(_this.seconds>=600){
+        _this.seconds = 0
+        _this.initFun()
+      } else {
+        _this.seconds = _this.seconds + 1
       }
-    })
-    getChartView().then(res => {
-      if(res.success){
-        let dataArr = [...(res.data||[])]
-        let sortArr = dataArr.sort(function(a,b){
-          return b.counts-a.counts;
-        });
-        // 获取最大数
-        let maxNum = sortArr[0].counts
-        // 最大数4等分
-        let numItem = maxNum/4
-        if(numItem<1){
-          numItem = 1
-        }else if(numItem<2) {
-          numItem = 2
-        } else if(numItem<5) {
-          numItem = 5
-        } else if(numItem<8) {
-          numItem = 8
-        } else if(numItem<10) {
-          numItem = 10
-        } else {
-          numItem = parseInt((parseInt(numItem/10)+1)*10)
+    },1000)
+  },
+  methods: {
+    initFun(){
+      getStoreView().then(res =>{
+        if(res.success){
+          let data = res.data||[]
+          this.stockData = data[0]||{}
         }
-        this.yArr = [numItem*4,numItem*3,numItem*2,numItem,0]
-        this.yMax = numItem*4
-        this.dataChart = (res.data||[]).map(item => {
-          let date = item.finishDate.slice(8)
-          let height = item.counts/this.yMax
-          return {
-            ...item,
-            date,
-            height
+      })
+      getChartView().then(res => {
+        if(res.success){
+          let dataArr = [...(res.data||[])]
+          let sortArr = dataArr.sort(function(a,b){
+            return b.counts-a.counts;
+          });
+          // 获取最大数
+          let maxNum = sortArr[0].counts
+          // 最大数4等分
+          let numItem = maxNum/4
+          if(numItem<1){
+            numItem = 1
+          }else if(numItem<2) {
+            numItem = 2
+          } else if(numItem<5) {
+            numItem = 5
+          } else if(numItem<8) {
+            numItem = 8
+          } else if(numItem<10) {
+            numItem = 10
+          } else {
+            numItem = parseInt((parseInt(numItem/10)+1)*10)
           }
-        })
-      }
-    })
-    getCensusView().then(res => {
+          this.yArr = [numItem*4,numItem*3,numItem*2,numItem,0]
+          this.yMax = numItem*4
+          this.dataChart = (res.data||[]).map(item => {
+            let date = item.finishDate.slice(8)
+            let height = item.counts/this.yMax
+            return {
+              ...item,
+              date,
+              height
+            }
+          })
+        }
+      })
+      getCensusView().then(res => {
         if(res.success){
           let data = res.data||[]
           this.censusPlan = data.find(item => item.censusName==='今日计划拆解')||{}
@@ -336,15 +363,8 @@ export default {
           this.censusWeek = data.find(item => item.censusName==='本周拆解')||{}
           this.censusYear = data.find(item => item.censusName==='全年拆解')||{}
         }
-    })
-    let _this = this
-    this.timer = setInterval(()=>{
-      let time = new Date();
-      let timeInfo = (time.getFullYear()+'-'+time.getMonth()+'-'+time.getDate()+' '+time.getHours()+':'+time.getMinutes()+':'+time.getSeconds())
-      _this.dataTime = timeInfo
-    },1000)
-  },
-  methods: {
+      })
+    }
   },
   destroyed() {
     clearInterval(this.timer)

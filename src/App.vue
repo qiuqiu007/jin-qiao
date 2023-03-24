@@ -467,7 +467,7 @@ li{
       .theme-item{
         width: 321px;
         height: 419px;
-        padding: 249px 23px 11px;
+        padding: 249px 0 11px 23px;
         &:first-child{
           background: url("~@/assets/4.png") center top no-repeat;
         }
@@ -478,14 +478,21 @@ li{
       .theme-content{
         overflow: hidden;
         height: 159px;
+        div{
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
         .first{
           overflow: hidden;
+          max-width: 95px;
           .item:first-child{
             margin-bottom: 16px;
           }
         }
         .last{
           padding-left: 24px;
+          max-width: 190px;
           .item:first-child{
             margin-bottom: 16px;
           }
@@ -509,7 +516,7 @@ li{
             background: linear-gradient(0deg, #2EF1FF 0%, #DAFAFC 99.365234375%);
             -webkit-background-clip: text;
             color: transparent;
-            font-size: 40px;
+            font-size: 34px;
             font-weight: bold;
             margin-right: 5px;
           }
