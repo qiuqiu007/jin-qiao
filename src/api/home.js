@@ -7,3 +7,10 @@ export function getStoreView() {
     method: 'get'
   })
 }
+// 大屏-最近十五日完工情况
+export function getChartView() {
+  return request({
+    url: '/api/screen/chartView',
+    method: 'get'
+  })
+}
