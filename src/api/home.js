@@ -14,3 +14,10 @@ export function getChartView() {
     method: 'get'
   })
 }
+// 大屏-拆解统计
+export function getCensusView() {
+  return request({
+    url: '/api/screen/CensusView',
+    method: 'get'
+  })
+}

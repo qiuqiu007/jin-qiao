@@ -20,7 +20,7 @@
           <div class="block-bg stock-block">
             <div class="stock-content">
               <div class="over-hide stock-div">
-                <div class="title-text">86辆</div>
+                <div class="title-text">{{stockData.YLKC}}辆</div>
                 <div class="inf-text" content="原料库存数">原料库存数</div>
               </div>
             </div>
@@ -31,12 +31,12 @@
             <div class="fl">
               <div class="icon-div"></div>
               <div class="text-title">零件库存</div>
-              <div class="content-text">2,079<span>吨</span></div>
+              <div class="content-text">{{stockData.LJKC|numFormat}}<span>吨</span></div>
             </div>
             <div class="fl">
               <div class="icon-div"></div>
               <div class="text-title">压合包</div>
-              <div class="content-text">1,483<span>吨</span></div>
+              <div class="content-text">{{stockData.YHKC|numFormat}}<span>吨</span></div>
             </div>
           </div>
           <!--仓库状态统计-->
@@ -46,7 +46,7 @@
               <div class="status-content">
                 <div class="status-title">空框</div>
                 <div class="num">
-                  177<span>个</span>
+                  {{stockData.KK}}<span>个</span>
                 </div>
               </div>
             </div>
@@ -54,7 +54,7 @@
               <div class="status-content">
                 <div class="status-title">已入库</div>
                 <div class="num">
-                  177<span>个</span>
+                  {{stockData.YRK}}<span>个</span>
                 </div>
               </div>
             </div>
@@ -62,7 +62,7 @@
               <div class="status-content">
                 <div class="status-title">入库中</div>
                 <div class="num">
-                  177<span>个</span>
+                  {{stockData.RKZ}}<span>个</span>
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@
               <div class="status-content">
                 <div class="status-title">临时出库</div>
                 <div class="num">
-                  177<span>个</span>
+                  {{stockData.LSCK}}<span>个</span>
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@
               <div class="status-content">
                 <div class="status-title">出库中</div>
                 <div class="num">
-                  177<span>个</span>
+                  {{stockData.CKZ}}<span>个</span>
                 </div>
               </div>
             </div>
@@ -88,8 +88,8 @@
         <div class="middle-container fl">
           <div class="middle-title">
             <div class="over-hide">
-              <span class="fl">今日计划拆解台数/总净重:</span>
-              <span class="fr">9台/10.22<span>吨</span></span>
+              <div class="fl">今日计划拆解台数/总净重:</div>
+              <div class="fr">{{censusPlan.counts}}<span>台</span>/{{censusPlan.weights}}<span>吨</span></div>
             </div>
           </div>
           <div class="middle-bg">
@@ -114,21 +114,21 @@
                   <div class="fl first">
                     <div class="item">
                       <div class="title">实际拆解</div>
-                      <div class="text"><span>5</span>台</div>
+                      <div class="text"><span>{{census4.counts}}</span>台</div>
                     </div>
                     <div class="item">
                       <div class="title">累计拆</div>
-                      <div class="text"><span>29</span>台</div>
+                      <div class="text"><span>{{censusAll4.counts}}</span>台</div>
                     </div>
                   </div>
                   <div class="fl last">
                     <div class="item">
                       <div class="title">总净重</div>
-                      <div class="text"><span>6.15</span>台</div>
+                      <div class="text"><span>{{census4.weights}}</span>吨</div>
                     </div>
                     <div class="item">
                       <div class="title">总净重</div>
-                      <div class="text"><span>29.22</span>台</div>
+                      <div class="text"><span>{{censusAll4.weights}}</span>吨</div>
                     </div>
                   </div>
                 </div>
@@ -138,21 +138,21 @@
                   <div class="fl first">
                     <div class="item">
                       <div class="title">实际拆解</div>
-                      <div class="text"><span>5</span>台</div>
+                      <div class="text"><span>{{census5.counts}}</span>台</div>
                     </div>
                     <div class="item">
                       <div class="title">累计拆</div>
-                      <div class="text"><span>29</span>台</div>
+                      <div class="text"><span>{{censusAll5.counts}}</span>台</div>
                     </div>
                   </div>
                   <div class="fl last">
                     <div class="item">
                       <div class="title">总净重</div>
-                      <div class="text"><span>6.15</span>台</div>
+                      <div class="text"><span>{{census5.weights}}</span>吨</div>
                     </div>
                     <div class="item">
                       <div class="title">总净重</div>
-                      <div class="text"><span>29.22</span>台</div>
+                      <div class="text"><span>{{censusAll5.weights}}</span>吨</div>
                     </div>
                   </div>
                 </div>
@@ -169,22 +169,22 @@
                   <div class="item1">
                     <div class="img"></div>今日拆解
                   </div>
-                  <div class="item2">10</div>
-                  <div class="item3">10.22</div>
+                  <div class="item2">{{censusDate.counts}}</div>
+                  <div class="item3">{{censusDate.weights}}</div>
                 </li>
                 <li class="benzhou other">
                   <div class="item1">
                     <div class="img"></div>本周拆解
                   </div>
-                  <div class="item2">10</div>
-                  <div class="item3">10.22</div>
+                  <div class="item2">{{censusWeek.counts}}</div>
+                  <div class="item3">{{censusWeek.weights}}</div>
                 </li>
                 <li class="quannian other">
                   <div class="item1">
                     <div class="img"></div>全年拆解
                   </div>
-                  <div class="item2">10</div>
-                  <div class="item3">10.22</div>
+                  <div class="item2">{{censusYear.counts}}</div>
+                  <div class="item3">{{censusYear.weights}}</div>
                 </li>
               </ul>
             </div>
@@ -197,7 +197,7 @@
           <div class="block-bg stock-block">
             <div class="stock-content">
               <div class="over-hide stock-div">
-                <div class="title-text">86辆</div>
+                <div class="title-text">{{stockData.JRRK}}辆</div>
                 <div class="inf-text" content="今日入库数">今日入库数</div>
               </div>
             </div>
@@ -208,16 +208,16 @@
             <div class="fl">
               <div class="icon-div"></div>
               <div class="text-title">零件出库</div>
-              <div class="content-text">2,079<span>吨</span></div>
+              <div class="content-text">{{stockData.LJCK|numFormat}}<span>吨</span></div>
             </div>
             <div class="fl">
               <div class="icon-div"></div>
               <div class="text-title">压合包</div>
-              <div class="content-text">1,483<span>吨</span></div>
+              <div class="content-text">{{stockData.YHCK|numFormat}}<span>吨</span></div>
             </div>
           </div>
           <!--最近15日完工统计-->
-          <div class="block-title">最近14日完工统计</div>
+          <div class="block-title">最近15日完工统计</div>
           <div class="block-bg status-block over-hide">
             <div class="status-title">拆解量（件）</div>
             <div class="over-hide chart-container">
@@ -245,13 +245,36 @@
 </template>
 
 <script>
-import { getStoreView, getChartView } from '@/api/home';
+import { getStoreView, getChartView, getCensusView } from '@/api/home';
 export default {
   components: { },
+  filters: {
+    numFormat(num) {
+      let numStr = ''
+      if(num||num===0){
+        numStr = num.toString()
+      } else {
+        return ''
+      }
+      let res=numStr.replace(/\d+/, function(n){ // 先提取整数部分
+        return n.replace(/(\d)(?=(\d{3})+$)/g,function($1){
+          return $1+",";
+        });
+      })
+      return res;
+    }
+  },
   data() {
     return {
       stockData: {},
-      stockList: {},
+      censusPlan: {},
+      census4: {},
+      censusAll4: {},
+      census5: {},
+      censusAll5: {},
+      censusDate: {},
+      censusWeek: {},
+      censusYear: {},
       yArr: [],
       yMax: 0,
       dataChart: [],
@@ -261,7 +284,8 @@ export default {
   mounted() {
     getStoreView().then(res =>{
       if(res.success){
-        this.stockList = res.data||[]
+        let data = res.data||[]
+        this.stockData = data[0]||{}
       }
     })
     getChartView().then(res => {
@@ -299,6 +323,19 @@ export default {
           }
         })
       }
+    })
+    getCensusView().then(res => {
+        if(res.success){
+          let data = res.data||[]
+          this.censusPlan = data.find(item => item.censusName==='今日计划拆解')||{}
+          this.census4 = data.find(item => item.censusName==='四号车间今日实际拆解')||{}
+          this.censusAll4 = data.find(item => item.censusName==='四号车间累计拆解')||{}
+          this.census5 = data.find(item => item.censusName==='五号车间今日实际拆解')||{}
+          this.censusAll5 = data.find(item => item.censusName==='五号车间累计拆解')||{}
+          this.censusDate = data.find(item => item.censusName==='今日拆解')||{}
+          this.censusWeek = data.find(item => item.censusName==='本周拆解')||{}
+          this.censusYear = data.find(item => item.censusName==='全年拆解')||{}
+        }
     })
     let _this = this
     this.timer = setInterval(()=>{

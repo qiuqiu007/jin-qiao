@@ -363,6 +363,9 @@ li{
             font-weight: 400;
             padding-left: 15px;
             padding-right: 8px;
+            &:first-child{
+              padding-left: 3px;
+            }
           }
         }
       }
@@ -473,15 +476,16 @@ li{
         }
       }
       .theme-content{
+        overflow: hidden;
+        height: 159px;
         .first{
-          width: 110px;
           overflow: hidden;
           .item:first-child{
             margin-bottom: 16px;
           }
         }
         .last{
-          width: 163px;
+          padding-left: 24px;
           .item:first-child{
             margin-bottom: 16px;
           }
